@@ -251,11 +251,11 @@
     function go(where) {
       var url = "/klik";
       if (where == "daftar") {
-        url = "/klik?p=register"
+        url = "/klik/register"
       } else if (where == "contact") {
-        url = "/klik?p=contact";
+        url = "/klik/contact";
       } else if (where == "livechat") {
-        url = "/klik?p=livechat";
+        url = "/klik/livechat";
       }  
       $("#spinner").show();
       jQuery("body").css({
