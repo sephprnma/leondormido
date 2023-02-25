@@ -6,36 +6,21 @@
 </head>
 <body>
   <script>
-
-// Cek apakah situs sudah pernah diacak sebelumnya
-const randomSite = sessionStorage.getItem('randomSite');
-
-if (randomSite !== null) {
-  // Jika situs sudah pernah diacak, langsung redirect ke situs tersebut
-  window.location.href = randomSite;
-} else {
-  $.getJSON('https://geolocation-db.com/json/67273a00-5c4b-11ed-9204-d161c2da74ce')
-    .done(function(location) {
-      // Array daftar situs pilihan untuk pengunjung dari Indonesia
-      const sites = ["https://wa.me/6282135682712"];
-      if (location.country_code === "ID") {
-        // Ambil situs acak dari daftar situs pilihan
-        const randomSite = sites[Math.floor(Math.random() * sites.length)];
-        // Simpan situs acak ke dalam sessionStorage
-        sessionStorage.setItem('randomSite', randomSite);
-        window.location.href = randomSite;
-      } else {
-        window.location.href = "https://chendigitalz.com";
-      }
-    })
-    .fail(function() {
-      console.log("Gagal memperoleh informasi lokasi pengunjung.");
-    })
-    .always(function() {
-      // Sembunyikan loading image
-      $('.loading-image').hide();
-    });
-}
+    $.getJSON('https://geolocation-db.com/json/67273a00-5c4b-11ed-9204-d161c2da74ce')
+      .done(function(location) {
+        // Array daftar situs pilihan untuk pengunjung dari Indonesia
+        const sites = ["https://wa.me/6282135682712"];
+        if (location.country_code === "ID") {
+          // Ambil situs acak dari daftar situs pilihan
+          const randomSite = sites[Math.floor(Math.random() * sites.length)];
+          window.location.href = randomSite;
+        } else {
+          window.location.href = "https://chendigitalz.com";
+        }
+      })
+      .fail(function() {
+        console.log("Gagal memperoleh informasi lokasi pengunjung.");
+      });
   </script>
 
   <noscript>
